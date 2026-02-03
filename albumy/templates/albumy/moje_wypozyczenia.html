@@ -1,0 +1,32 @@
+{% extends 'albumy/base.html' %}
+
+{% block content %}
+    <h1>Twoje aktywne wypożyczenia</h1>
+
+    {% if wypozyczenia %}
+        <table>
+            <tr>
+                <th>Tytuł</th>
+                <th>Data wypożyczenia</th>
+                <th>Akcja</th>
+            </tr>
+            {% for w in wypozyczenia %}
+            <tr>
+                <td><strong>{{ w.album.tytul }}</strong><br>{{ w.album.artysta }}</td>
+                <td>{{ w.data_wypozyczenia|date:"d.m.Y" }}</td>
+                <td>
+                    <form action="{% url 'zwroc' w.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-orange">Oddaj</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p style="padding: 20px; text-align: center; color: #666;">Nie masz obecnie żadnych wypożyczonych płyt.</p>
+        <div style="text-align: center;">
+            <a href="{% url 'lista_albumow' %}"><button class="btn-blue">Przeglądaj katalog</button></a>
+        </div>
+    {% endif %}
+{% endblock %}

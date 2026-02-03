@@ -1,0 +1,21 @@
+{% extends 'albumy/base.html' %}
+
+{% block content %}
+    <div style="max-width: 400px; margin: 0 auto; text-align: center;">
+        <h2>Zaloguj się</h2>
+        
+        <form method="post" style="text-align: left;">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    <label>{{ field.label }}</label><br>
+                    {{ field }}
+                </p>
+            {% endfor %}
+            <button type="submit" class="btn-blue" style="width: 100%;">Zaloguj</button>
+        </form>
+        
+        <hr>
+        <p>Nie masz konta? <a href="{% url 'rejestracja' %}">Zarejestruj się tutaj!</a></p>
+    </div>
+{% endblock %}

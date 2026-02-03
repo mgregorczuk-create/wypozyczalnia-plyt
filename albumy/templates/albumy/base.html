@@ -1,0 +1,42 @@
+{% load static %} <!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wypożyczalnia Muzyczna</title>
+    <link rel="stylesheet" href="{% static 'albumy/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="user-bar">
+            <div>
+                <a href="{% url 'lista_albumow' %}" style="font-weight: bold; font-size: 18px; color: #333; text-decoration: none;">
+                    🎵 Wypożyczalnia
+                </a>
+            </div>
+
+            <div>
+                {% if user.is_authenticated %}
+                    Witaj, <b>{{ user.username }}</b> | 
+                    <a href="{% url 'moje_wypozyczenia' %}">Moje płyty</a> | 
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; color: red; cursor: pointer; text-decoration: underline; padding: 0;">Wyloguj</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Zaloguj się</a> | 
+                    <a href="{% url 'rejestracja' %}">Załóż konto</a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+        
+        <p style="margin-top: 50px; color: #999; font-size: 12px; text-align: center;">
+            Projekt zaliczeniowy Django 2025
+        </p>
+    </div>
+
+</body>
+</html>

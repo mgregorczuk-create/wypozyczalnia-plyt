@@ -1,0 +1,62 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    max-width: 900px;
+    margin: 40px auto; 
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+h2, h3 { color: #444; }
+a { color: #007bff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+.user-bar {
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+th { background-color: #f8f9fa; }
+
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+.btn-green { background-color: #28a745; color: white; }
+.btn-green:hover { background-color: #218838; }
+
+.btn-red { background-color: #dc3545; color: white; }
+.btn-red:hover { background-color: #c82333; }
+
+.btn-blue { background-color: #007bff; color: white; }
+.btn-blue:hover { background-color: #0069d9; }
+
+.btn-orange { background-color: #fd7e14; color: white; }

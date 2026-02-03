@@ -1,0 +1,33 @@
+{% extends 'albumy/base.html' %}
+
+{% block content %}
+    <p><a href="{% url 'lista_albumow' %}">← Wróć do listy</a></p>
+
+    <h1>{{ album.tytul }}</h1>
+    
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
+        <h3>Wykonawca: {{ album.artysta.pseudonim }}</h3>
+        <p><strong>Gatunek:</strong> {{ album.gatunek }}</p>
+        <p><strong>Rok wydania:</strong> {{ album.rok_wydania }}</p>
+        {% if album.opis %}
+            <p style="font-style: italic;">{{ album.artysta.opis }}</p>
+        {% endif %}
+    </div>
+
+    <hr style="margin: 20px 0;">
+    
+    {% if user.is_authenticated %}
+        {% if album.dostepny %}
+            <form action="{% url 'wypozycz' album.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-green">WYPOŻYCZ PŁYTĘ TERAZ</button>
+            </form>
+        {% else %}
+            <button disabled class="btn-red" style="opacity: 0.6;">PŁYTA JUŻ WYPOŻYCZONA</button>
+        {% endif %}
+    {% else %}
+        <div style="background: #fff3cd; padding: 15px; border-radius: 5px; color: #856404;">
+            Musisz się zalogować, aby wypożyczyć! <a href="{% url 'login' %}">Zaloguj się</a>
+        </div>
+    {% endif %}
+{% endblock %}

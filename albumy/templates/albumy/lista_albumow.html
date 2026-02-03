@@ -1,0 +1,25 @@
+{% extends 'albumy/base.html' %}
+
+{% block content %}
+    <h1>Dostępne Albumy</h1>
+
+    <ul style="list-style: none; padding: 0;">
+        {% for plyta in albumy %}
+            <li style="border-bottom: 1px solid #eee; padding: 15px 0; display: flex; justify-content: space-between;">
+                <div>
+                    <strong><a href="{% url 'szczegoly_albumu' plyta.id %}" style="font-size: 18px;">{{ plyta.tytul }}</a></strong>
+                    <br>
+                    <span style="color: #666;">{{ plyta.artysta }} ({{ plyta.rok_wydania }})</span>
+                </div>
+                
+                <div>
+                    {% if plyta.dostepny %}
+                        <span style="color: green; font-weight: bold; background: #e6fffa; padding: 5px 10px; border-radius: 15px;">Dostępna</span>
+                    {% else %}
+                        <span style="color: red; font-weight: bold; background: #fff5f5; padding: 5px 10px; border-radius: 15px;">Wypożyczona</span>
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
